@@ -1,22 +1,23 @@
 import { Link } from "@tanstack/react-router";
-import { Heart, MessageCircle, Shield, Sparkles, Users, Star, Check, ArrowRight, Crown } from "lucide-react";
+import { Heart, MessageCircle, Shield, Sparkles, Users, Star, Check, ArrowRight, Crown, Target, Eye, Gem, HeartHandshake } from "lucide-react";
 import heroCouple from "@/assets/hero-couple.jpg";
 import testimonial1 from "@/assets/testimonial-1.jpg";
 import testimonial2 from "@/assets/testimonial-2.jpg";
 import testimonial3 from "@/assets/testimonial-3.jpg";
+import logo from "@/assets/logo.png";
 
-function Logo({ className = "" }: { className?: string }) {
+function Logo({ className = "", size = "sm" }: { className?: string; size?: "sm" | "lg" }) {
+  const h = size === "lg" ? "h-12" : "h-9";
   return (
-    <Link to="/" className={`flex items-center gap-2 ${className}`}>
-      <div className="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] shadow-glow">
-        <Heart className="h-5 w-5 fill-white text-white" />
-      </div>
-      <span className="font-display text-xl font-bold tracking-tight">
+    <Link to="/" className={`flex items-center gap-2.5 ${className}`}>
+      <img src={logo} alt="Niou Waxtanne" className={`${h} w-auto object-contain drop-shadow-[0_0_20px_oklch(0.66_0.24_5/0.5)]`} />
+      <span className={`font-display font-bold tracking-tight ${size === "lg" ? "text-2xl" : "text-xl"}`}>
         Niou <span className="text-gradient-romantic">Waxtanne</span>
       </span>
     </Link>
   );
 }
+
 
 function Nav() {
   return (
