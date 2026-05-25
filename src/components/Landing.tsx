@@ -184,6 +184,52 @@ function Features() {
   );
 }
 
+function Brand() {
+  const pillars = [
+    { icon: Target, title: "Mission", desc: "Connecter les cœurs africains à travers des rencontres sincères et authentiques." },
+    { icon: Eye, title: "Vision", desc: "Devenir la plateforme de référence en Afrique pour des relations sérieuses et durables." },
+    { icon: Gem, title: "Valeurs", desc: "Authenticité, Respect, Sécurité, Engagement, Diversité." },
+    { icon: HeartHandshake, title: "Promesse", desc: "Ici, chaque connexion a le potentiel de changer une vie." },
+  ];
+  return (
+    <section className="relative py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="mb-3 text-xs font-medium uppercase tracking-widest text-gold">Notre ADN</p>
+          <h2 className="font-display text-4xl font-bold sm:text-5xl">
+            Là où les cœurs se <span className="text-gradient-romantic">retrouvent</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            Niou Waxtanne est né d'une conviction : l'amour existe partout en Afrique,
+            mais chaque histoire mérite la bonne rencontre pour s'écrire.
+          </p>
+        </div>
+
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {pillars.map((p) => (
+            <div key={p.title} className="rounded-2xl glass p-6 text-center">
+              <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] shadow-glow">
+                <p.icon className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="mt-5 font-display text-xl font-semibold">{p.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3 text-sm">
+          {["Chaleureuse", "Élégante", "Moderne", "Romantique", "Inclusive", "Inspirante"].map((tag) => (
+            <span key={tag} className="rounded-full glass px-4 py-1.5 text-foreground/80">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 function HowItWorks() {
   const steps = [
     { n: "01", title: "Créez votre profil", desc: "Photos, bio, intérêts. En quelques minutes vous êtes prêt(e)." },
@@ -403,11 +449,13 @@ export default function Landing() {
       <main>
         <Hero />
         <Features />
+        <Brand />
         <HowItWorks />
         <Testimonials />
         <Pricing />
         <CTA />
       </main>
+
       <Footer />
     </div>
   );
