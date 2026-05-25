@@ -62,9 +62,10 @@ function Hero() {
             <span className="text-gradient-romantic">Aimez.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            La nouvelle référence pour des rencontres africaines authentiques.
-            Élégant, sécurisé, romantique — fait pour celles et ceux qui cherchent une vraie connexion.
+            Là où les cœurs africains se rencontrent pour écrire de vraies histoires.
+            Une plateforme premium, sûre et inclusive — pensée pour des relations sincères et durables.
           </p>
+
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <button className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] px-7 py-3.5 font-semibold text-white shadow-glow transition hover:scale-[1.03]">
