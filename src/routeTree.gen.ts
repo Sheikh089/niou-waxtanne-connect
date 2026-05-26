@@ -9,38 +9,150 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppMessagesRouteImport } from './routes/app.messages'
+import { Route as AppMatchesRouteImport } from './routes/app.matches'
+import { Route as AppMessagesIndexRouteImport } from './routes/app.messages.index'
+import { Route as AppMessagesMatchIdRouteImport } from './routes/app.messages.$matchId'
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMessagesRoute = AppMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMatchesRoute = AppMatchesRouteImport.update({
+  id: '/matches',
+  path: '/matches',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMessagesIndexRoute = AppMessagesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppMessagesRoute,
+} as any)
+const AppMessagesMatchIdRoute = AppMessagesMatchIdRouteImport.update({
+  id: '/$matchId',
+  path: '/$matchId',
+  getParentRoute: () => AppMessagesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/app/matches': typeof AppMatchesRoute
+  '/app/messages': typeof AppMessagesRouteWithChildren
+  '/app/profile': typeof AppProfileRoute
+  '/app/': typeof AppIndexRoute
+  '/app/messages/$matchId': typeof AppMessagesMatchIdRoute
+  '/app/messages/': typeof AppMessagesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/app/matches': typeof AppMatchesRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app': typeof AppIndexRoute
+  '/app/messages/$matchId': typeof AppMessagesMatchIdRoute
+  '/app/messages': typeof AppMessagesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/app/matches': typeof AppMatchesRoute
+  '/app/messages': typeof AppMessagesRouteWithChildren
+  '/app/profile': typeof AppProfileRoute
+  '/app/': typeof AppIndexRoute
+  '/app/messages/$matchId': typeof AppMessagesMatchIdRoute
+  '/app/messages/': typeof AppMessagesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/auth'
+    | '/app/matches'
+    | '/app/messages'
+    | '/app/profile'
+    | '/app/'
+    | '/app/messages/$matchId'
+    | '/app/messages/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/app/matches'
+    | '/app/profile'
+    | '/app'
+    | '/app/messages/$matchId'
+    | '/app/messages'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/auth'
+    | '/app/matches'
+    | '/app/messages'
+    | '/app/profile'
+    | '/app/'
+    | '/app/messages/$matchId'
+    | '/app/messages/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,12 +160,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/messages': {
+      id: '/app/messages'
+      path: '/messages'
+      fullPath: '/app/messages'
+      preLoaderRoute: typeof AppMessagesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/matches': {
+      id: '/app/matches'
+      path: '/matches'
+      fullPath: '/app/matches'
+      preLoaderRoute: typeof AppMatchesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/messages/': {
+      id: '/app/messages/'
+      path: '/'
+      fullPath: '/app/messages/'
+      preLoaderRoute: typeof AppMessagesIndexRouteImport
+      parentRoute: typeof AppMessagesRoute
+    }
+    '/app/messages/$matchId': {
+      id: '/app/messages/$matchId'
+      path: '/$matchId'
+      fullPath: '/app/messages/$matchId'
+      preLoaderRoute: typeof AppMessagesMatchIdRouteImport
+      parentRoute: typeof AppMessagesRoute
+    }
   }
 }
 
+interface AppMessagesRouteChildren {
+  AppMessagesMatchIdRoute: typeof AppMessagesMatchIdRoute
+  AppMessagesIndexRoute: typeof AppMessagesIndexRoute
+}
+
+const AppMessagesRouteChildren: AppMessagesRouteChildren = {
+  AppMessagesMatchIdRoute: AppMessagesMatchIdRoute,
+  AppMessagesIndexRoute: AppMessagesIndexRoute,
+}
+
+const AppMessagesRouteWithChildren = AppMessagesRoute._addFileChildren(
+  AppMessagesRouteChildren,
+)
+
+interface AppRouteChildren {
+  AppMatchesRoute: typeof AppMatchesRoute
+  AppMessagesRoute: typeof AppMessagesRouteWithChildren
+  AppProfileRoute: typeof AppProfileRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppMatchesRoute: AppMatchesRoute,
+  AppMessagesRoute: AppMessagesRouteWithChildren,
+  AppProfileRoute: AppProfileRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
