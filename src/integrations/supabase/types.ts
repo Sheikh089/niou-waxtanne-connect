@@ -14,7 +14,140 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      likes: {
+        Row: {
+          created_at: string
+          from_user: string
+          id: string
+          is_like: boolean
+          to_user: string
+        }
+        Insert: {
+          created_at?: string
+          from_user: string
+          id?: string
+          is_like?: boolean
+          to_user: string
+        }
+        Update: {
+          created_at?: string
+          from_user?: string
+          id?: string
+          is_like?: boolean
+          to_user?: string
+        }
+        Relationships: []
+      }
+      matches: {
+        Row: {
+          created_at: string
+          id: string
+          user_a: string
+          user_b: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          user_a: string
+          user_b: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          user_a?: string
+          user_b?: string
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          match_id: string
+          sender_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          match_id: string
+          sender_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          match_id?: string
+          sender_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          age: number | null
+          avatar_url: string | null
+          bio: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          display_name: string
+          gender: string | null
+          id: string
+          interests: string[] | null
+          is_premium: boolean
+          is_verified: boolean
+          last_seen: string | null
+          looking_for: string | null
+          photos: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          age?: number | null
+          avatar_url?: string | null
+          bio?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          display_name: string
+          gender?: string | null
+          id: string
+          interests?: string[] | null
+          is_premium?: boolean
+          is_verified?: boolean
+          last_seen?: string | null
+          looking_for?: string | null
+          photos?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          age?: number | null
+          avatar_url?: string | null
+          bio?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          display_name?: string
+          gender?: string | null
+          id?: string
+          interests?: string[] | null
+          is_premium?: boolean
+          is_verified?: boolean
+          last_seen?: string | null
+          looking_for?: string | null
+          photos?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
