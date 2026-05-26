@@ -68,13 +68,13 @@ function Hero() {
 
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <button className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] px-7 py-3.5 font-semibold text-white shadow-glow transition hover:scale-[1.03]">
+            <Link to="/auth" className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] px-7 py-3.5 font-semibold text-white shadow-glow transition hover:scale-[1.03]">
               Créer un compte
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-            </button>
-            <button className="rounded-full glass px-7 py-3.5 font-semibold text-foreground transition hover:bg-white/10">
+            </Link>
+            <Link to="/auth" className="rounded-full glass px-7 py-3.5 font-semibold text-foreground transition hover:bg-white/10">
               Se connecter
-            </button>
+            </Link>
           </div>
 
           <div className="mt-10 flex items-center gap-6">
@@ -387,10 +387,10 @@ function CTA() {
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             Rejoignez la communauté africaine de rencontres premium. Gratuit pour commencer.
           </p>
-          <button className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] px-8 py-4 font-semibold text-white shadow-glow transition hover:scale-105">
+          <Link to="/auth" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] px-8 py-4 font-semibold text-white shadow-glow transition hover:scale-105">
             Créer mon profil gratuit
             <ArrowRight className="h-4 w-4" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>
