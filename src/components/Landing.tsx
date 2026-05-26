@@ -31,12 +31,12 @@ function Nav() {
           <a href="#testimonials" className="hover:text-foreground transition">Témoignages</a>
         </nav>
         <div className="flex items-center gap-2">
-          <button className="hidden rounded-full px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground sm:block">
+          <Link to="/auth" className="hidden rounded-full px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground sm:block">
             Se connecter
-          </button>
-          <button className="rounded-full bg-gradient-to-r from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] px-5 py-2 text-sm font-semibold text-white shadow-glow transition hover:scale-105">
+          </Link>
+          <Link to="/auth" className="rounded-full bg-gradient-to-r from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] px-5 py-2 text-sm font-semibold text-white shadow-glow transition hover:scale-105">
             Créer un compte
-          </button>
+          </Link>
         </div>
       </div>
     </header>
