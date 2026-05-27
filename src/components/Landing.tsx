@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Heart, MessageCircle, Shield, Sparkles, Users, Star, Check, ArrowRight, Crown, Target, Eye, Gem, HeartHandshake } from "lucide-react";
+import { Heart, MessageCircle, Shield, Sparkles, Users, Star, Check, ArrowRight, Crown, Target, Eye, Gem, HeartHandshake, Video, MapPin, Languages, Search, BellRing, EyeOff, BadgeCheck, Flame, Zap, Lock, Camera, Award, FileCheck2, ShieldCheck, BookOpen, Calendar } from "lucide-react";
 import heroCouple from "@/assets/hero-couple.jpg";
 import testimonial1 from "@/assets/testimonial-1.jpg";
 import testimonial2 from "@/assets/testimonial-2.jpg";
@@ -142,12 +142,22 @@ function Hero() {
 
 function Features() {
   const items = [
-    { icon: Sparkles, title: "Matching intelligent", desc: "Algorithme basé sur vos affinités, valeurs et centres d'intérêt." },
-    { icon: MessageCircle, title: "Messagerie temps réel", desc: "Chat, photos, vocaux, appels vidéo — tout chiffré, tout fluide." },
-    { icon: Shield, title: "Profils vérifiés", desc: "Vérification d'identité et anti-faux profils pour des rencontres sereines." },
-    { icon: Crown, title: "Expérience premium", desc: "Boost, super likes, filtres avancés et visibilité augmentée." },
-    { icon: Users, title: "Communauté africaine", desc: "Pensé par et pour les Africains du continent et de la diaspora." },
-    { icon: Heart, title: "Relations sérieuses", desc: "Un espace conçu pour bâtir des relations authentiques et durables." },
+    { icon: Sparkles, title: "Matching intelligent", desc: "Algorithme de compatibilité basé sur valeurs, intérêts et personnalité." },
+    { icon: Flame, title: "Swipe & Super Likes", desc: "Gauche, droite, Super Like — votre intuition décide." },
+    { icon: MessageCircle, title: "Chat temps réel", desc: "Messagerie instantanée, photos et vocaux fluides et chiffrés." },
+    { icon: Video, title: "Appels audio & vidéo", desc: "Découvrez-vous en visio avant de vous rencontrer." },
+    { icon: Camera, title: "Stories utilisateurs", desc: "Partagez votre quotidien en 24 h, à l'africaine." },
+    { icon: MapPin, title: "Géolocalisation Sénégal", desc: "Rencontrez près de chez vous, Dakar, Thiès, Saint-Louis…" },
+    { icon: Search, title: "Recherche avancée", desc: "Filtres par âge, ville, intérêts, langues, ethnie, religion." },
+    { icon: BadgeCheck, title: "Vérification d'identité", desc: "Photo selfie + pièce — adieu les faux profils." },
+    { icon: Crown, title: "Badges premium", desc: "Gold & Platinum : visibilité, boost, super likes illimités." },
+    { icon: BellRing, title: "Notifications temps réel", desc: "Matchs, messages et likes, jamais une étincelle manquée." },
+    { icon: Languages, title: "Wolof · Français · Anglais", desc: "Traduction instantanée dans vos conversations." },
+    { icon: EyeOff, title: "Mode discret", desc: "Naviguez en toute discrétion, votre profil reste invisible." },
+    { icon: ShieldCheck, title: "Blocage & signalement", desc: "Contrôle total. Une équipe modération 24/7." },
+    { icon: Zap, title: "Suggestions compatibilité", desc: "Chaque jour, les profils qui vous correspondent vraiment." },
+    { icon: Award, title: "Algorithme intelligent", desc: "Apprentissage continu : plus vous l'utilisez, mieux il vous connaît." },
+    { icon: Heart, title: "Relations sérieuses", desc: "Pensé pour bâtir des histoires authentiques et durables." },
   ];
   return (
     <section id="features" className="relative py-24">
@@ -397,16 +407,273 @@ function CTA() {
   );
 }
 
+function PopularProfiles() {
+  const profiles = [
+    { img: testimonial1, name: "Aminata", age: 26, city: "Dakar", tags: ["Voyage", "Art"], verified: true },
+    { img: testimonial2, name: "Mamadou", age: 31, city: "Abidjan", tags: ["Sport", "Musique"], verified: true },
+    { img: testimonial3, name: "Fatou", age: 28, city: "Paris", tags: ["Mode", "Cuisine"], verified: true },
+    { img: testimonial1, name: "Awa", age: 24, city: "Thiès", tags: ["Lecture", "Cinéma"], verified: false },
+  ];
+  return (
+    <section className="relative py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="mb-3 text-xs font-medium uppercase tracking-widest text-gold">Profils populaires</p>
+          <h2 className="font-display text-4xl font-bold sm:text-5xl">
+            Découvrez des <span className="text-gradient-romantic">cœurs à conquérir</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">Une sélection des profils les plus aimés cette semaine.</p>
+        </div>
+
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {profiles.map((p, i) => (
+            <div key={i} className="group relative overflow-hidden rounded-3xl border border-white/10 shadow-elegant transition hover:-translate-y-1">
+              <div className="aspect-[3/4] overflow-hidden">
+                <img src={p.img} alt={p.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+              {p.verified && (
+                <div className="absolute right-3 top-3 grid h-7 w-7 place-items-center rounded-full bg-gold shadow-glow">
+                  <Check className="h-4 w-4 text-gold-foreground" strokeWidth={3} />
+                </div>
+              )}
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-display text-xl font-semibold">{p.name}</span>
+                  <span className="text-sm text-muted-foreground">{p.age}</span>
+                </div>
+                <div className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
+                  <MapPin className="h-3 w-3" /> {p.city}
+                </div>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {p.tags.map((t) => (
+                    <span key={t} className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] backdrop-blur">{t}</span>
+                  ))}
+                </div>
+              </div>
+              <button className="absolute bottom-4 right-4 grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] shadow-glow opacity-0 transition group-hover:opacity-100">
+                <Heart className="h-5 w-5 fill-white text-white" />
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LiveMatches() {
+  const matches = [
+    { a: "Awa", b: "Cheikh", city: "Dakar", when: "il y a 2 min" },
+    { a: "Marième", b: "Ousmane", city: "Thiès", when: "il y a 5 min" },
+    { a: "Khadi", b: "Moussa", city: "Saint-Louis", when: "il y a 8 min" },
+    { a: "Bineta", b: "Lamine", city: "Mbour", when: "il y a 12 min" },
+  ];
+  return (
+    <section className="relative py-24">
+      <div className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-72 -translate-y-1/2 bg-gradient-to-r from-transparent via-[oklch(0.66_0.24_5)]/10 to-transparent blur-3xl" />
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs text-gold">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[oklch(0.66_0.24_5)] opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[oklch(0.66_0.24_5)]" />
+            </span>
+            En direct
+          </span>
+          <h2 className="mt-4 font-display text-4xl font-bold sm:text-5xl">
+            Des matchs <span className="text-gradient-romantic">en temps réel</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground">Pendant que vous lisez, des cœurs se rencontrent partout en Afrique.</p>
+        </div>
+
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {matches.map((m, i) => (
+            <div key={i} className="rounded-2xl glass-strong p-5 animate-fade-up" style={{ animationDelay: `${i * 100}ms` }}>
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-3">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] ring-2 ring-background grid place-items-center text-xs font-semibold text-white">
+                    {m.a[0]}
+                  </div>
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[oklch(0.88_0.17_90)] to-gold ring-2 ring-background grid place-items-center text-xs font-semibold text-gold-foreground">
+                    {m.b[0]}
+                  </div>
+                </div>
+                <Heart className="h-5 w-5 fill-[oklch(0.66_0.24_5)] text-[oklch(0.66_0.24_5)]" />
+              </div>
+              <p className="mt-3 text-sm font-semibold">{m.a} & {m.b}</p>
+              <p className="text-xs text-muted-foreground">{m.city} · {m.when}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 grid gap-4 sm:grid-cols-4 text-center">
+          {[
+            { v: "250K+", l: "Membres" },
+            { v: "1,2M", l: "Matchs créés" },
+            { v: "12K+", l: "Histoires d'amour" },
+            { v: "98%", l: "Profils vérifiés" },
+          ].map((s) => (
+            <div key={s.l} className="rounded-2xl glass p-5">
+              <div className="font-display text-3xl font-bold text-gradient-gold">{s.v}</div>
+              <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">{s.l}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Security() {
+  const items = [
+    { icon: BadgeCheck, title: "Vérification d'identité", desc: "Selfie + pièce d'identité validés par notre équipe." },
+    { icon: Lock, title: "Chiffrement end-to-end", desc: "Vos conversations restent strictement privées." },
+    { icon: FileCheck2, title: "Modération 24/7", desc: "Une équipe humaine veille sur la communauté." },
+    { icon: EyeOff, title: "Mode discret & blocage", desc: "Vous contrôlez qui vous voit et qui vous parle." },
+  ];
+  return (
+    <section id="security" className="relative py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p className="mb-3 text-xs font-medium uppercase tracking-widest text-gold">Sécurité & vérification</p>
+            <h2 className="font-display text-4xl font-bold sm:text-5xl">
+              Votre sécurité, <span className="text-gradient-romantic">notre priorité</span>
+            </h2>
+            <p className="mt-4 max-w-lg text-muted-foreground">
+              Niou Waxtanne est conçu pour que vous puissiez rencontrer en toute sérénité.
+              Profils vérifiés, modération continue et outils de contrôle complets.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {items.map((it) => (
+                <div key={it.title} className="rounded-2xl glass p-5">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-[oklch(0.66_0.24_5)]/30 to-gold/20 ring-1 ring-white/10">
+                    <it.icon className="h-5 w-5 text-[oklch(0.78_0.2_5)]" />
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-semibold">{it.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{it.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute inset-0 -z-10 rounded-[2.5rem] bg-gradient-to-br from-[oklch(0.66_0.24_5)] to-gold opacity-30 blur-3xl" />
+            <div className="rounded-[2.5rem] glass-strong p-8">
+              <div className="flex items-center gap-3">
+                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-[oklch(0.66_0.24_5)] to-[oklch(0.58_0.22_5)] shadow-glow">
+                  <Shield className="h-7 w-7 text-white" />
+                </div>
+                <div>
+                  <p className="font-display text-xl font-semibold">Charte de confiance</p>
+                  <p className="text-xs text-muted-foreground">Engagement Niou Waxtanne</p>
+                </div>
+              </div>
+              <ul className="mt-6 space-y-4 text-sm">
+                {[
+                  "Aucune donnée vendue à des tiers, jamais.",
+                  "Photos & messages stockés de manière sécurisée.",
+                  "Signalement traité en moins de 24 h.",
+                  "Conseils sécurité avant chaque premier rendez-vous.",
+                  "Bouton SOS pour rendez-vous en cas de besoin.",
+                ].map((line) => (
+                  <li key={line} className="flex items-start gap-3">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                    <span className="text-foreground/90">{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Blog() {
+  const posts = [
+    {
+      img: testimonial3,
+      tag: "Couples",
+      date: "20 mai 2026",
+      title: "Mariages mixtes en Afrique : célébrer la diversité",
+      excerpt: "Quand l'amour traverse les frontières culturelles, il devient une vraie aventure humaine.",
+    },
+    {
+      img: testimonial1,
+      tag: "Conseils",
+      date: "12 mai 2026",
+      title: "Premier rendez-vous à Dakar : nos meilleurs spots",
+      excerpt: "Plages, rooftops, cafés cachés — voici où faire battre les cœurs.",
+    },
+    {
+      img: testimonial2,
+      tag: "Relations",
+      date: "05 mai 2026",
+      title: "L'art de la conversation : briser la glace avec élégance",
+      excerpt: "Les premières phrases comptent. Voici comment captiver dès le premier message.",
+    },
+  ];
+  return (
+    <section id="blog" className="relative py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <p className="mb-3 text-xs font-medium uppercase tracking-widest text-gold">Blog relationnel</p>
+            <h2 className="font-display text-4xl font-bold sm:text-5xl">
+              Inspiration & <span className="text-gradient-romantic">conseils</span>
+            </h2>
+          </div>
+          <a href="#" className="hidden items-center gap-1 text-sm text-foreground/80 hover:text-foreground sm:inline-flex">
+            Tous les articles <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {posts.map((p) => (
+            <article key={p.title} className="group overflow-hidden rounded-3xl glass-strong transition hover:-translate-y-1">
+              <div className="aspect-[16/10] overflow-hidden">
+                <img src={p.img} alt={p.title} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                  <span className="rounded-full bg-[oklch(0.66_0.24_5)]/20 px-2 py-0.5 text-[oklch(0.78_0.2_5)]">{p.tag}</span>
+                  <span className="inline-flex items-center gap-1"><Calendar className="h-3 w-3" /> {p.date}</span>
+                </div>
+                <h3 className="mt-3 font-display text-xl font-semibold leading-snug">{p.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{p.excerpt}</p>
+                <a href="#" className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-gold hover:underline">
+                  Lire l'article <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   return (
-    <footer className="border-t border-white/5 py-12">
+    <footer className="relative border-t border-white/5 py-16">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.66_0.24_5)]/60 to-transparent" />
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-8 md:grid-cols-4">
-          <div>
+        <div className="grid gap-10 md:grid-cols-5">
+          <div className="md:col-span-2">
             <Logo />
-            <p className="mt-4 text-sm text-muted-foreground">
-              Rencontrez. Discutez. Aimez.
+            <p className="mt-4 max-w-xs text-sm text-muted-foreground">
+              L'app de rencontres africaines premium pour des relations sérieuses et authentiques.
             </p>
+            <div className="mt-6 flex items-center gap-3">
+              {["IG", "TT", "FB", "X"].map((s) => (
+                <a key={s} href="#" aria-label={s} className="grid h-9 w-9 place-items-center rounded-full glass hover:bg-white/10 text-xs font-semibold">
+                  {s}
+                </a>
+              ))}
+            </div>
           </div>
           <div>
             <h4 className="font-display text-sm font-semibold text-foreground">Produit</h4>
@@ -414,14 +681,16 @@ function Footer() {
               <li><a href="#features" className="hover:text-foreground">Fonctionnalités</a></li>
               <li><a href="#pricing" className="hover:text-foreground">Premium</a></li>
               <li><a href="#how" className="hover:text-foreground">Comment ça marche</a></li>
+              <li><a href="#security" className="hover:text-foreground">Sécurité</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-display text-sm font-semibold text-foreground">Entreprise</h4>
+            <h4 className="font-display text-sm font-semibold text-foreground">Communauté</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground">À propos</a></li>
-              <li><a href="#" className="hover:text-foreground">Sécurité</a></li>
-              <li><a href="#" className="hover:text-foreground">Contact</a></li>
+              <li><a href="#blog" className="hover:text-foreground">Blog</a></li>
+              <li><a href="#testimonials" className="hover:text-foreground">Témoignages</a></li>
+              <li><a href="#" className="hover:text-foreground">Histoires d'amour</a></li>
+              <li><a href="#" className="hover:text-foreground">Événements</a></li>
             </ul>
           </div>
           <div>
@@ -430,10 +699,11 @@ function Footer() {
               <li><a href="#" className="hover:text-foreground">Confidentialité</a></li>
               <li><a href="#" className="hover:text-foreground">Conditions</a></li>
               <li><a href="#" className="hover:text-foreground">Cookies</a></li>
+              <li><a href="#" className="hover:text-foreground">Contact</a></li>
             </ul>
           </div>
         </div>
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-muted-foreground sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-muted-foreground sm:flex-row">
           <p>© 2026 Niou Waxtanne. Tous droits réservés.</p>
           <p>Fait avec <Heart className="inline h-3 w-3 fill-[oklch(0.66_0.24_5)] text-[oklch(0.66_0.24_5)]" /> en Afrique</p>
         </div>
@@ -451,8 +721,12 @@ export default function Landing() {
         <Features />
         <Brand />
         <HowItWorks />
+        <PopularProfiles />
+        <LiveMatches />
         <Testimonials />
         <Pricing />
+        <Security />
+        <Blog />
         <CTA />
       </main>
 
