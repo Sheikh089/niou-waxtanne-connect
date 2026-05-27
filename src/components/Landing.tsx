@@ -142,12 +142,22 @@ function Hero() {
 
 function Features() {
   const items = [
-    { icon: Sparkles, title: "Matching intelligent", desc: "Algorithme basé sur vos affinités, valeurs et centres d'intérêt." },
-    { icon: MessageCircle, title: "Messagerie temps réel", desc: "Chat, photos, vocaux, appels vidéo — tout chiffré, tout fluide." },
-    { icon: Shield, title: "Profils vérifiés", desc: "Vérification d'identité et anti-faux profils pour des rencontres sereines." },
-    { icon: Crown, title: "Expérience premium", desc: "Boost, super likes, filtres avancés et visibilité augmentée." },
-    { icon: Users, title: "Communauté africaine", desc: "Pensé par et pour les Africains du continent et de la diaspora." },
-    { icon: Heart, title: "Relations sérieuses", desc: "Un espace conçu pour bâtir des relations authentiques et durables." },
+    { icon: Sparkles, title: "Matching intelligent", desc: "Algorithme de compatibilité basé sur valeurs, intérêts et personnalité." },
+    { icon: Flame, title: "Swipe & Super Likes", desc: "Gauche, droite, Super Like — votre intuition décide." },
+    { icon: MessageCircle, title: "Chat temps réel", desc: "Messagerie instantanée, photos et vocaux fluides et chiffrés." },
+    { icon: Video, title: "Appels audio & vidéo", desc: "Découvrez-vous en visio avant de vous rencontrer." },
+    { icon: Camera, title: "Stories utilisateurs", desc: "Partagez votre quotidien en 24 h, à l'africaine." },
+    { icon: MapPin, title: "Géolocalisation Sénégal", desc: "Rencontrez près de chez vous, Dakar, Thiès, Saint-Louis…" },
+    { icon: Search, title: "Recherche avancée", desc: "Filtres par âge, ville, intérêts, langues, ethnie, religion." },
+    { icon: BadgeCheck, title: "Vérification d'identité", desc: "Photo selfie + pièce — adieu les faux profils." },
+    { icon: Crown, title: "Badges premium", desc: "Gold & Platinum : visibilité, boost, super likes illimités." },
+    { icon: BellRing, title: "Notifications temps réel", desc: "Matchs, messages et likes, jamais une étincelle manquée." },
+    { icon: Languages, title: "Wolof · Français · Anglais", desc: "Traduction instantanée dans vos conversations." },
+    { icon: EyeOff, title: "Mode discret", desc: "Naviguez en toute discrétion, votre profil reste invisible." },
+    { icon: ShieldCheck, title: "Blocage & signalement", desc: "Contrôle total. Une équipe modération 24/7." },
+    { icon: Zap, title: "Suggestions compatibilité", desc: "Chaque jour, les profils qui vous correspondent vraiment." },
+    { icon: Award, title: "Algorithme intelligent", desc: "Apprentissage continu : plus vous l'utilisez, mieux il vous connaît." },
+    { icon: Heart, title: "Relations sérieuses", desc: "Pensé pour bâtir des histoires authentiques et durables." },
   ];
   return (
     <section id="features" className="relative py-24">
