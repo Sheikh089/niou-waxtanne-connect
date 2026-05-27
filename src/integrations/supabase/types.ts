@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      blocks: {
+        Row: {
+          blocked: string
+          blocker: string
+          created_at: string
+          id: string
+        }
+        Insert: {
+          blocked: string
+          blocker: string
+          created_at?: string
+          id?: string
+        }
+        Update: {
+          blocked?: string
+          blocker?: string
+          created_at?: string
+          id?: string
+        }
+        Relationships: []
+      }
       likes: {
         Row: {
           created_at: string
@@ -65,6 +86,7 @@ export type Database = {
           created_at: string
           id: string
           match_id: string
+          read_at: string | null
           sender_id: string
         }
         Insert: {
@@ -72,6 +94,7 @@ export type Database = {
           created_at?: string
           id?: string
           match_id: string
+          read_at?: string | null
           sender_id: string
         }
         Update: {
@@ -79,6 +102,7 @@ export type Database = {
           created_at?: string
           id?: string
           match_id?: string
+          read_at?: string | null
           sender_id?: string
         }
         Relationships: [
@@ -90,6 +114,36 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      phone_otps: {
+        Row: {
+          attempts: number
+          code_hash: string
+          consumed: boolean
+          created_at: string
+          expires_at: string
+          id: string
+          phone: string
+        }
+        Insert: {
+          attempts?: number
+          code_hash: string
+          consumed?: boolean
+          created_at?: string
+          expires_at: string
+          id?: string
+          phone: string
+        }
+        Update: {
+          attempts?: number
+          code_hash?: string
+          consumed?: boolean
+          created_at?: string
+          expires_at?: string
+          id?: string
+          phone?: string
+        }
+        Relationships: []
       }
       profiles: {
         Row: {
@@ -107,8 +161,10 @@ export type Database = {
           is_verified: boolean
           last_seen: string | null
           looking_for: string | null
+          onboarding_completed: boolean
           photos: string[] | null
           updated_at: string
+          whatsapp: string | null
         }
         Insert: {
           age?: number | null
@@ -125,8 +181,10 @@ export type Database = {
           is_verified?: boolean
           last_seen?: string | null
           looking_for?: string | null
+          onboarding_completed?: boolean
           photos?: string[] | null
           updated_at?: string
+          whatsapp?: string | null
         }
         Update: {
           age?: number | null
@@ -143,8 +201,40 @@ export type Database = {
           is_verified?: boolean
           last_seen?: string | null
           looking_for?: string | null
+          onboarding_completed?: boolean
           photos?: string[] | null
           updated_at?: string
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      reports: {
+        Row: {
+          created_at: string
+          details: string | null
+          id: string
+          match_id: string | null
+          reason: string
+          reported: string
+          reporter: string
+        }
+        Insert: {
+          created_at?: string
+          details?: string | null
+          id?: string
+          match_id?: string | null
+          reason: string
+          reported: string
+          reporter: string
+        }
+        Update: {
+          created_at?: string
+          details?: string | null
+          id?: string
+          match_id?: string | null
+          reason?: string
+          reported?: string
+          reporter?: string
         }
         Relationships: []
       }
