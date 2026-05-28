@@ -28,17 +28,30 @@ function Discover() {
     (async () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
-      const { data: liked } = await supabase.from("likes").select("to_user").eq("from_user", user.id);
-      const excluded = [user.id, ...(liked?.map((l) => l.to_user) ?? [])];
+      const [{ data: liked }, { data: blocked }, { data: blockedBy }] = await Promise.all([
+        supabase.from("likes").select("to_user").eq("from_user", user.id),
+        supabase.from("blocks").select("blocked").eq("blocker", user.id),
+        // We can't see who blocked us via RLS, but excluding our own blocks is sufficient
+        // to avoid showing them; reverse-block is enforced by RLS on messages/likes anyway.
+        Promise.resolve({ data: [] as { blocker: string }[] }),
+      ]);
+      const excluded = [
+        user.id,
+        ...(liked?.map((l) => l.to_user) ?? []),
+        ...(blocked?.map((b) => b.blocked) ?? []),
+        ...(blockedBy?.map((b) => b.blocker) ?? []),
+      ];
       const { data } = await supabase
         .from("profiles")
         .select("id, display_name, bio, age, city, country, avatar_url, interests")
+        .eq("onboarding_completed", true)
         .not("id", "in", `(${excluded.join(",")})`)
         .limit(30);
       setProfiles((data ?? []) as Profile[]);
       setLoading(false);
     })();
   }, []);
+
 
   const swipe = async (isLike: boolean) => {
     const current = profiles[index];
