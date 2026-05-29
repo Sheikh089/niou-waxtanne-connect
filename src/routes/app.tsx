@@ -16,6 +16,16 @@ function AppLayout() {
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [onboarded, setOnboarded] = useState<boolean | null>(null);
+  const { perm, request: requestNotif } = useNotificationPermission();
+  useMessagePushNotifications(user?.id ?? null);
+
+  const enableNotifs = async () => {
+    const result = await requestNotif();
+    if (result === "granted") toast.success("Notifications activées 🔔");
+    else if (result === "denied") toast.error("Notifications refusées. Activez-les dans les réglages du navigateur.");
+    else if (result === "unsupported") toast.error("Votre navigateur ne supporte pas les notifications.");
+  };
+
 
   useEffect(() => {
     if (!loading && !user) navigate({ to: "/auth" });
