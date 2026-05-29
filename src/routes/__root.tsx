@@ -135,10 +135,13 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => { registerSW(); }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
       <Toaster theme="dark" position="top-center" richColors />
+      <InstallPrompt />
     </QueryClientProvider>
   );
 }
