@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -10,6 +11,8 @@ import {
 import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
+import { InstallPrompt } from "@/components/InstallPrompt";
+import { registerSW } from "@/lib/pwa-register";
 
 function NotFoundComponent() {
   return (
