@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -10,6 +11,8 @@ import {
 import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
+import { InstallPrompt } from "@/components/InstallPrompt";
+import { registerSW } from "@/lib/pwa-register";
 
 function NotFoundComponent() {
   return (
@@ -72,12 +75,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+      { name: "theme-color", content: "#FF3F81" },
+      { name: "color-scheme", content: "dark" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
+      { name: "apple-mobile-web-app-title", content: "NiouWaxtanne" },
+      { name: "application-name", content: "Niou Waxtanne" },
       { title: "Niou Waxtanne — Rencontrez. Discutez. Aimez." },
       { name: "description", content: "Niou Waxtanne, l'app de rencontres africaines premium pour relations sérieuses et authentiques." },
       { property: "og:title", content: "Niou Waxtanne — Rencontrez. Discutez. Aimez." },
       { property: "og:description", content: "Niou Waxtanne, l'app de rencontres africaines premium pour relations sérieuses et authentiques." },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Niou Waxtanne" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Niou Waxtanne — Rencontrez. Discutez. Aimez." },
       { name: "twitter:description", content: "Niou Waxtanne, l'app de rencontres africaines premium pour relations sérieuses et authentiques." },
@@ -86,6 +97,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/icon-192.png" },
+      { rel: "icon", type: "image/png", sizes: "512x512", href: "/icon-512.png" },
+      { rel: "apple-touch-icon", href: "/icon-192.png" },
+      { rel: "apple-touch-icon", sizes: "152x152", href: "/icon-152.png" },
+      { rel: "apple-touch-icon", sizes: "192x192", href: "/icon-192.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -118,10 +135,13 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => { registerSW(); }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
       <Toaster theme="dark" position="top-center" richColors />
+      <InstallPrompt />
     </QueryClientProvider>
   );
 }
