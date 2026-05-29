@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Outlet, useNavigate, Link, useRouterState } from "@tanstack/react-router";
-import { Heart, MessageCircle, User, LogOut, Flame } from "lucide-react";
+import { Heart, MessageCircle, User, LogOut, Flame, Bell, BellOff } from "lucide-react";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
+import { useNotificationPermission, useMessagePushNotifications } from "@/hooks/use-push-notifications";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/app")({
