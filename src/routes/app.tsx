@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Outlet, useNavigate, Link, useRouterState } from "@tanstack/react-router";
-import { Heart, MessageCircle, User, LogOut, Flame } from "lucide-react";
+import { Heart, MessageCircle, User, LogOut, Flame, Bell, BellOff } from "lucide-react";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
+import { useNotificationPermission, useMessagePushNotifications } from "@/hooks/use-push-notifications";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/app")({
@@ -14,6 +16,16 @@ function AppLayout() {
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [onboarded, setOnboarded] = useState<boolean | null>(null);
+  const { perm, request: requestNotif } = useNotificationPermission();
+  useMessagePushNotifications(user?.id ?? null);
+
+  const enableNotifs = async () => {
+    const result = await requestNotif();
+    if (result === "granted") toast.success("Notifications activées 🔔");
+    else if (result === "denied") toast.error("Notifications refusées. Activez-les dans les réglages du navigateur.");
+    else if (result === "unsupported") toast.error("Votre navigateur ne supporte pas les notifications.");
+  };
+
 
   useEffect(() => {
     if (!loading && !user) navigate({ to: "/auth" });
@@ -63,16 +75,33 @@ function AppLayout() {
               Niou <span className="text-gradient-romantic">Waxtanne</span>
             </span>
           </Link>
-          <button
-            onClick={async () => {
-              await supabase.auth.signOut();
-              navigate({ to: "/" });
-            }}
-            className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
-          >
-            <LogOut className="h-3.5 w-3.5" />
-            Quitter
-          </button>
+          <div className="flex items-center gap-1">
+            {perm !== "unsupported" && (
+              <button
+                onClick={enableNotifs}
+                title={perm === "granted" ? "Notifications activées" : "Activer les notifications"}
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs hover:bg-muted ${
+                  perm === "granted" ? "text-[oklch(0.66_0.24_5)]" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {perm === "granted" ? <Bell className="h-3.5 w-3.5" /> : <BellOff className="h-3.5 w-3.5" />}
+                <span className="hidden sm:inline">
+                  {perm === "granted" ? "Notifications" : "Activer alertes"}
+                </span>
+              </button>
+            )}
+            <button
+              onClick={async () => {
+                await supabase.auth.signOut();
+                navigate({ to: "/" });
+              }}
+              className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+              Quitter
+            </button>
+          </div>
+
         </div>
       </header>
 
