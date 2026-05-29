@@ -75,16 +75,33 @@ function AppLayout() {
               Niou <span className="text-gradient-romantic">Waxtanne</span>
             </span>
           </Link>
-          <button
-            onClick={async () => {
-              await supabase.auth.signOut();
-              navigate({ to: "/" });
-            }}
-            className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
-          >
-            <LogOut className="h-3.5 w-3.5" />
-            Quitter
-          </button>
+          <div className="flex items-center gap-1">
+            {perm !== "unsupported" && (
+              <button
+                onClick={enableNotifs}
+                title={perm === "granted" ? "Notifications activées" : "Activer les notifications"}
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs hover:bg-muted ${
+                  perm === "granted" ? "text-[oklch(0.66_0.24_5)]" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {perm === "granted" ? <Bell className="h-3.5 w-3.5" /> : <BellOff className="h-3.5 w-3.5" />}
+                <span className="hidden sm:inline">
+                  {perm === "granted" ? "Notifications" : "Activer alertes"}
+                </span>
+              </button>
+            )}
+            <button
+              onClick={async () => {
+                await supabase.auth.signOut();
+                navigate({ to: "/" });
+              }}
+              className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+              Quitter
+            </button>
+          </div>
+
         </div>
       </header>
 
