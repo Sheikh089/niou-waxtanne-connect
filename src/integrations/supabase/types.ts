@@ -47,6 +47,36 @@ export type Database = {
         }
         Relationships: []
       }
+      admin_user_actions: {
+        Row: {
+          action: string
+          admin_id: string
+          created_at: string
+          id: string
+          metadata: Json | null
+          reason: string | null
+          target_user_id: string
+        }
+        Insert: {
+          action: string
+          admin_id: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          reason?: string | null
+          target_user_id: string
+        }
+        Update: {
+          action?: string
+          admin_id?: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          reason?: string | null
+          target_user_id?: string
+        }
+        Relationships: []
+      }
       blocks: {
         Row: {
           blocked: string
@@ -194,8 +224,11 @@ export type Database = {
           is_verified: boolean
           last_seen: string | null
           looking_for: string | null
+          moderation_note: string | null
           onboarding_completed: boolean
           photos: string[] | null
+          status: Database["public"]["Enums"]["profile_status"]
+          suspended_until: string | null
           updated_at: string
           whatsapp: string | null
         }
@@ -214,8 +247,11 @@ export type Database = {
           is_verified?: boolean
           last_seen?: string | null
           looking_for?: string | null
+          moderation_note?: string | null
           onboarding_completed?: boolean
           photos?: string[] | null
+          status?: Database["public"]["Enums"]["profile_status"]
+          suspended_until?: string | null
           updated_at?: string
           whatsapp?: string | null
         }
@@ -234,8 +270,11 @@ export type Database = {
           is_verified?: boolean
           last_seen?: string | null
           looking_for?: string | null
+          moderation_note?: string | null
           onboarding_completed?: boolean
           photos?: string[] | null
+          status?: Database["public"]["Enums"]["profile_status"]
+          suspended_until?: string | null
           updated_at?: string
           whatsapp?: string | null
         }
@@ -309,6 +348,7 @@ export type Database = {
     }
     Enums: {
       app_role: "super_admin" | "admin" | "moderator" | "support"
+      profile_status: "active" | "suspended" | "banned"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -437,6 +477,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["super_admin", "admin", "moderator", "support"],
+      profile_status: ["active", "suspended", "banned"],
     },
   },
 } as const
