@@ -232,26 +232,36 @@ function RecentLogins() {
 
 function ComingSoon() {
   const modules = [
-    { icon: Users, label: "Utilisateurs", desc: "Recherche, suspension, vérification" },
-    { icon: Flag, label: "Modération", desc: "Signalements & actions" },
-    { icon: BadgeCheck, label: "Vérification", desc: "Validation identité" },
-    { icon: Activity, label: "Analytics", desc: "Graphiques temps réel" },
+    { icon: Users, label: "Utilisateurs", desc: "Recherche, suspension, vérification", to: "/admin/users" as const },
+    { icon: Flag, label: "Modération", desc: "Signalements & actions", to: null },
+    { icon: BadgeCheck, label: "Vérification", desc: "Validation identité", to: null },
+    { icon: Activity, label: "Analytics", desc: "Graphiques temps réel", to: null },
   ];
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5">
-      <h2 className="text-sm font-semibold mb-4">Prochains modules</h2>
+      <h2 className="text-sm font-semibold mb-4">Modules</h2>
       <ul className="grid grid-cols-2 gap-3">
-        {modules.map((m) => (
-          <li key={m.label} className="rounded-xl border border-zinc-900 bg-black/40 p-3">
-            <m.icon className="h-4 w-4 text-pink-400" />
-            <div className="mt-2 text-xs font-semibold text-white">{m.label}</div>
-            <div className="text-[11px] text-zinc-500">{m.desc}</div>
-          </li>
-        ))}
+        {modules.map((m) => {
+          const inner = (
+            <>
+              <m.icon className="h-4 w-4 text-pink-400" />
+              <div className="mt-2 text-xs font-semibold text-white">{m.label}</div>
+              <div className="text-[11px] text-zinc-500">{m.desc}</div>
+            </>
+          );
+          return (
+            <li key={m.label}>
+              {m.to ? (
+                <Link to={m.to} className="block rounded-xl border border-zinc-900 bg-black/40 p-3 hover:border-pink-500/40 hover:bg-pink-500/5 transition">
+                  {inner}
+                </Link>
+              ) : (
+                <div className="rounded-xl border border-zinc-900 bg-black/40 p-3 opacity-60">{inner}</div>
+              )}
+            </li>
+          );
+        })}
       </ul>
-      <p className="mt-4 text-[11px] text-zinc-600">
-        Les fondations (auth, rôles, journalisation) sont en place. Demande-moi le module suivant à construire.
-      </p>
     </div>
   );
 }
