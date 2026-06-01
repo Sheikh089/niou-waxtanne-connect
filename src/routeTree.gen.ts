@@ -17,6 +17,7 @@ import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppProfileRouteImport } from './routes/app.profile'
 import { Route as AppMessagesRouteImport } from './routes/app.messages'
 import { Route as AppMatchesRouteImport } from './routes/app.matches'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AppMessagesIndexRouteImport } from './routes/app.messages.index'
@@ -62,6 +63,11 @@ const AppMatchesRoute = AppMatchesRouteImport.update({
   path: '/matches',
   getParentRoute: () => AppRoute,
 } as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/users': typeof AdminUsersRoute
   '/app/matches': typeof AppMatchesRoute
   '/app/messages': typeof AppMessagesRouteWithChildren
   '/app/profile': typeof AppProfileRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/users': typeof AdminUsersRoute
   '/app/matches': typeof AppMatchesRoute
   '/app/profile': typeof AppProfileRoute
   '/app': typeof AppIndexRoute
@@ -117,6 +125,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/users': typeof AdminUsersRoute
   '/app/matches': typeof AppMatchesRoute
   '/app/messages': typeof AppMessagesRouteWithChildren
   '/app/profile': typeof AppProfileRoute
@@ -133,6 +142,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/users'
     | '/app/matches'
     | '/app/messages'
     | '/app/profile'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/users'
     | '/app/matches'
     | '/app/profile'
     | '/app'
@@ -159,6 +170,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/users'
     | '/app/matches'
     | '/app/messages'
     | '/app/profile'
@@ -174,6 +186,7 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminUsersRoute: typeof AdminUsersRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -233,6 +246,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/app/matches'
       preLoaderRoute: typeof AppMatchesRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/admin/login': {
       id: '/admin/login'
@@ -302,7 +322,18 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminUsersRoute: AdminUsersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
