@@ -151,7 +151,7 @@ export const adminUserAction = createServerFn({ method: "POST" })
     }
     if (data.reason) patch.moderation_note = data.reason;
 
-    const { error } = await supabaseAdmin.from("profiles").update(patch).eq("id", data.id);
+    const { error } = await supabaseAdmin.from("profiles").update(patch as never).eq("id", data.id);
     if (error) throw new Error(error.message);
 
     await supabaseAdmin.from("admin_user_actions").insert({
