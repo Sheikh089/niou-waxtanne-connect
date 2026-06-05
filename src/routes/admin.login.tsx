@@ -89,7 +89,7 @@ function AdminLoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-lg border border-zinc-800 bg-black/50 pl-10 pr-3 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-500/20"
-                placeholder="contact@welldonescompany.com"
+                placeholder="email@exemple.com"
               />
             </div>
           </div>
