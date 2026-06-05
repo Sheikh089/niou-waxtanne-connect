@@ -705,7 +705,12 @@ function Footer() {
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 text-xs text-muted-foreground sm:flex-row">
           <p>© 2026 Niou Waxtanne. Tous droits réservés.</p>
-          <p>Fait avec <Heart className="inline h-3 w-3 fill-[oklch(0.66_0.24_5)] text-[oklch(0.66_0.24_5)]" /> en Afrique</p>
+          <div className="flex items-center gap-3">
+            <Link to="/admin/login" className="opacity-40 hover:opacity-100 transition-opacity" title="Espace administrateur">
+              <LockKeyhole className="h-3.5 w-3.5" />
+            </Link>
+            <p>Fait avec <Heart className="inline h-3 w-3 fill-[oklch(0.66_0.24_5)] text-[oklch(0.66_0.24_5)]" /> en Afrique</p>
+          </div>
         </div>
       </div>
     </footer>
