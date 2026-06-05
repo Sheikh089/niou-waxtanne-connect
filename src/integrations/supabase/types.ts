@@ -337,6 +337,7 @@ export type Database = {
     }
     Functions: {
       get_matched_whatsapp: { Args: { _other: string }; Returns: string }
+      get_my_whatsapp: { Args: never; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

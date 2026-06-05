@@ -49,6 +49,7 @@ function Profile() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
       const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+      const { data: wa } = await supabase.rpc("get_my_whatsapp");
       if (data) {
         setForm({
           display_name: data.display_name ?? "",
@@ -59,7 +60,7 @@ function Profile() {
           city: data.city ?? "",
           country: data.country ?? "Sénégal",
           avatar_url: data.avatar_url ?? "",
-          whatsapp: data.whatsapp ?? "",
+          whatsapp: (wa as string | null) ?? "",
           photos: data.photos ?? [],
           interests: data.interests ?? [],
         });
