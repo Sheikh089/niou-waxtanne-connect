@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Heart, MessageCircle, Shield, Sparkles, Users, Star, Check, ArrowRight, Crown, Target, Eye, Gem, HeartHandshake, Video, MapPin, Languages, Search, BellRing, EyeOff, BadgeCheck, Flame, Zap, Lock, Camera, Award, FileCheck2, ShieldCheck, BookOpen, Calendar } from "lucide-react";
+import { Heart, MessageCircle, Shield, Sparkles, Users, Star, Check, ArrowRight, Crown, Target, Eye, Gem, HeartHandshake, Video, MapPin, Languages, Search, BellRing, EyeOff, BadgeCheck, Flame, Zap, Lock, Camera, Award, FileCheck2, ShieldCheck, BookOpen, Calendar, LockKeyhole } from "lucide-react";
 import heroCouple from "@/assets/hero-couple.jpg";
 import testimonial1 from "@/assets/testimonial-1.jpg";
 import testimonial2 from "@/assets/testimonial-2.jpg";
