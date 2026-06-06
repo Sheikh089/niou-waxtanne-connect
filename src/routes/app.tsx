@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Outlet, useNavigate, Link, useRouterState } from "@tanstack/react-router";
-import { Heart, MessageCircle, User, LogOut, Flame, Bell, BellOff } from "lucide-react";
+import { Heart, MessageCircle, User, LogOut, Flame, Bell, BellOff, LayoutDashboard } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
@@ -57,6 +57,7 @@ function AppLayout() {
   }
 
   const tabs = [
+    { to: "/app/dashboard", label: "Accueil", icon: LayoutDashboard, exact: false },
     { to: "/app", label: "Découvrir", icon: Flame, exact: true },
     { to: "/app/matches", label: "Matchs", icon: Heart, exact: false },
     { to: "/app/messages", label: "Messages", icon: MessageCircle, exact: false },
