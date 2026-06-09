@@ -145,28 +145,43 @@ export type Database = {
       }
       messages: {
         Row: {
-          content: string
+          content: string | null
           created_at: string
+          duration_ms: number | null
+          height: number | null
           id: string
           match_id: string
+          media_type: string | null
+          media_url: string | null
           read_at: string | null
           sender_id: string
+          width: number | null
         }
         Insert: {
-          content: string
+          content?: string | null
           created_at?: string
+          duration_ms?: number | null
+          height?: number | null
           id?: string
           match_id: string
+          media_type?: string | null
+          media_url?: string | null
           read_at?: string | null
           sender_id: string
+          width?: number | null
         }
         Update: {
-          content?: string
+          content?: string | null
           created_at?: string
+          duration_ms?: number | null
+          height?: number | null
           id?: string
           match_id?: string
+          media_type?: string | null
+          media_url?: string | null
           read_at?: string | null
           sender_id?: string
+          width?: number | null
         }
         Relationships: [
           {
