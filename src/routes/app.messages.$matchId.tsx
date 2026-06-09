@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import {
   ArrowLeft, Send, MoreVertical, ShieldAlert, Ban, Check, CheckCheck,
-  Paperclip, Image as ImageIcon, Video as VideoIcon, Mic, Square, X, Play, Pause, Phone, VideoIcon as Vid2,
+  Paperclip, Image as ImageIcon, Video as VideoIcon, Mic, X, Play, Pause, Phone,
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
