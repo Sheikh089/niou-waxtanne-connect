@@ -312,7 +312,7 @@ function Conversation() {
           </div>
         </div>
         <button className="rounded-full p-2 text-white/70 hover:bg-white/10" title="Bientôt"><Phone className="h-4 w-4" /></button>
-        <button className="rounded-full p-2 text-white/70 hover:bg-white/10" title="Bientôt"><Vid2 className="h-4 w-4" /></button>
+        <button className="rounded-full p-2 text-white/70 hover:bg-white/10" title="Bientôt"><VideoIcon className="h-4 w-4" /></button>
         <div className="relative">
           <button onClick={() => setMenuOpen((o) => !o)} className="rounded-full p-2 text-white/80 hover:bg-white/10">
             <MoreVertical className="h-4 w-4" />
