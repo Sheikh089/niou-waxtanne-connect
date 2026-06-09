@@ -143,10 +143,55 @@ export type Database = {
         }
         Relationships: []
       }
+      message_audit: {
+        Row: {
+          action: string
+          actor_id: string
+          created_at: string
+          id: string
+          match_id: string
+          message_id: string
+        }
+        Insert: {
+          action: string
+          actor_id: string
+          created_at?: string
+          id?: string
+          match_id: string
+          message_id: string
+        }
+        Update: {
+          action?: string
+          actor_id?: string
+          created_at?: string
+          id?: string
+          match_id?: string
+          message_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_audit_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "message_audit_message_id_fkey"
+            columns: ["message_id"]
+            isOneToOne: false
+            referencedRelation: "messages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       messages: {
         Row: {
           content: string | null
           created_at: string
+          deleted_by: string | null
+          deleted_for: string[]
+          deleted_for_all_at: string | null
           duration_ms: number | null
           height: number | null
           id: string
@@ -160,6 +205,9 @@ export type Database = {
         Insert: {
           content?: string | null
           created_at?: string
+          deleted_by?: string | null
+          deleted_for?: string[]
+          deleted_for_all_at?: string | null
           duration_ms?: number | null
           height?: number | null
           id?: string
@@ -173,6 +221,9 @@ export type Database = {
         Update: {
           content?: string | null
           created_at?: string
+          deleted_by?: string | null
+          deleted_for?: string[]
+          deleted_for_all_at?: string | null
           duration_ms?: number | null
           height?: number | null
           id?: string
