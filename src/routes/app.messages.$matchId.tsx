@@ -104,8 +104,9 @@ function Conversation() {
       const { data: msgs } = await supabase
         .from("messages").select("*").eq("match_id", matchId).order("created_at", { ascending: true });
       if (active) {
-        setMessages((msgs ?? []) as Message[]);
-        const unread = (msgs ?? []).filter((m: Message) => m.sender_id !== user.id && !m.read_at).map((m: Message) => m.id);
+        const list = (msgs ?? []) as unknown as Message[];
+        setMessages(list);
+        const unread = list.filter((m) => m.sender_id !== user.id && !m.read_at).map((m) => m.id);
         if (unread.length) {
           await supabase.from("messages").update({ read_at: new Date().toISOString() }).in("id", unread);
         }
