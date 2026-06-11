@@ -3,5 +3,13 @@
   "name": "tanstack-start-app",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "src/server.ts",
+  "main": "dist/server/index.mjs",
+  "no_bundle": true,
+  "rules": [
+    { "type": "ESModule", "globs": ["**/*.mjs", "**/*.js"] }
+  ],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "dist/client"
+  }
 }
