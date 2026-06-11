@@ -5,7 +5,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "main": "dist/server/index.mjs",
   "build": {
-    "command": "bun run build",
+    "command": "npm run build",
     "cwd": "."
   },
   "no_bundle": true,
