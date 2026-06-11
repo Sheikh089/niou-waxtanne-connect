@@ -13,6 +13,7 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  nitro: true,
   vite: {
     plugins: [
       VitePWA({
