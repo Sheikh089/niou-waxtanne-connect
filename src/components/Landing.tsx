@@ -629,7 +629,7 @@ function Footer() {
           <div>
             <h4 className="font-display text-sm font-semibold text-foreground">Produit</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li><a href="#features" className="hover:text-foreground">Fonctionnalités</a></li>
+              
               <li><a href="#pricing" className="hover:text-foreground">Premium</a></li>
               <li><a href="#how" className="hover:text-foreground">Comment ça marche</a></li>
               <li><a href="#security" className="hover:text-foreground">Sécurité</a></li>
