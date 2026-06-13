@@ -677,8 +677,6 @@ export default function Landing() {
         
         <Brand />
         <HowItWorks />
-        <PopularProfiles />
-        <LiveMatches />
         <Pricing />
 
         <CTA />
