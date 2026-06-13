@@ -679,10 +679,8 @@ export default function Landing() {
         <HowItWorks />
         <PopularProfiles />
         <LiveMatches />
-        <Testimonials />
         <Pricing />
-        <Security />
-        <Blog />
+
         <CTA />
       </main>
 
