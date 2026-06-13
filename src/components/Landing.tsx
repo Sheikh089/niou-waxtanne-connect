@@ -25,7 +25,7 @@ function Nav() {
       <div className="mx-auto mt-4 flex max-w-7xl items-center justify-between rounded-2xl glass-strong px-5 py-3 mx-4 md:mx-auto md:px-6">
         <Logo />
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#features" className="hover:text-foreground transition">Fonctionnalités</a>
+          
           <a href="#how" className="hover:text-foreground transition">Comment ça marche</a>
           <a href="#pricing" className="hover:text-foreground transition">Premium</a>
           <a href="#testimonials" className="hover:text-foreground transition">Témoignages</a>
@@ -141,58 +141,9 @@ function Hero() {
 }
 
 function Features() {
-  const items = [
-    { icon: Sparkles, title: "Matching intelligent", desc: "Algorithme de compatibilité basé sur valeurs, intérêts et personnalité." },
-    { icon: Flame, title: "Swipe & Super Likes", desc: "Gauche, droite, Super Like — votre intuition décide." },
-    { icon: MessageCircle, title: "Chat temps réel", desc: "Messagerie instantanée, photos et vocaux fluides et chiffrés." },
-    { icon: Video, title: "Appels audio & vidéo", desc: "Découvrez-vous en visio avant de vous rencontrer." },
-    { icon: Camera, title: "Stories utilisateurs", desc: "Partagez votre quotidien en 24 h, à l'africaine." },
-    { icon: MapPin, title: "Géolocalisation Sénégal", desc: "Rencontrez près de chez vous, Dakar, Thiès, Saint-Louis…" },
-    { icon: Search, title: "Recherche avancée", desc: "Filtres par âge, ville, intérêts, langues, ethnie, religion." },
-    { icon: BadgeCheck, title: "Vérification d'identité", desc: "Photo selfie + pièce — adieu les faux profils." },
-    { icon: Crown, title: "Badges premium", desc: "Gold & Platinum : visibilité, boost, super likes illimités." },
-    { icon: BellRing, title: "Notifications temps réel", desc: "Matchs, messages et likes, jamais une étincelle manquée." },
-    { icon: Languages, title: "Wolof · Français · Anglais", desc: "Traduction instantanée dans vos conversations." },
-    { icon: EyeOff, title: "Mode discret", desc: "Naviguez en toute discrétion, votre profil reste invisible." },
-    { icon: ShieldCheck, title: "Blocage & signalement", desc: "Contrôle total. Une équipe modération 24/7." },
-    { icon: Zap, title: "Suggestions compatibilité", desc: "Chaque jour, les profils qui vous correspondent vraiment." },
-    { icon: Award, title: "Algorithme intelligent", desc: "Apprentissage continu : plus vous l'utilisez, mieux il vous connaît." },
-    { icon: Heart, title: "Relations sérieuses", desc: "Pensé pour bâtir des histoires authentiques et durables." },
-  ];
-  return (
-    <section id="features" className="relative py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="mb-3 text-xs font-medium uppercase tracking-widest text-gold">Fonctionnalités</p>
-          <h2 className="font-display text-4xl font-bold sm:text-5xl">
-            Tout ce qu'il faut pour <span className="text-gradient-romantic">trouver l'amour</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            Une expérience pensée pour la sécurité, l'élégance et les vraies connexions.
-          </p>
-        </div>
-
-        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((it) => (
-            <div
-              key={it.title}
-              className="group relative overflow-hidden rounded-2xl glass p-6 transition hover:-translate-y-1 hover:bg-white/[0.06]"
-            >
-              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[oklch(0.66_0.24_5)] opacity-0 blur-3xl transition group-hover:opacity-30" />
-              <div className="relative">
-                <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-[oklch(0.66_0.24_5)]/20 to-[oklch(0.88_0.17_90)]/10 ring-1 ring-white/10">
-                  <it.icon className="h-5 w-5 text-[oklch(0.78_0.2_5)]" />
-                </div>
-                <h3 className="mt-5 font-display text-xl font-semibold">{it.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{it.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return null;
 }
+
 
 function Brand() {
   const pillars = [
@@ -678,7 +629,7 @@ function Footer() {
           <div>
             <h4 className="font-display text-sm font-semibold text-foreground">Produit</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li><a href="#features" className="hover:text-foreground">Fonctionnalités</a></li>
+              
               <li><a href="#pricing" className="hover:text-foreground">Premium</a></li>
               <li><a href="#how" className="hover:text-foreground">Comment ça marche</a></li>
               <li><a href="#security" className="hover:text-foreground">Sécurité</a></li>
@@ -723,7 +674,7 @@ export default function Landing() {
       <Nav />
       <main>
         <Hero />
-        <Features />
+        
         <Brand />
         <HowItWorks />
         <PopularProfiles />
