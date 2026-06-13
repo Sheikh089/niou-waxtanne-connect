@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
-import { Heart, Mail, Lock, Loader2, Phone, MessageCircle } from "lucide-react";
+import { Heart, Mail, Lock, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
-import { sendWhatsappOtp, verifyWhatsappOtp } from "@/lib/whatsapp-otp.functions";
 import logo from "@/assets/logo.png";
 
 export const Route = createFileRoute("/auth")({
