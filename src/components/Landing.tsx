@@ -25,7 +25,7 @@ function Nav() {
       <div className="mx-auto mt-4 flex max-w-7xl items-center justify-between rounded-2xl glass-strong px-5 py-3 mx-4 md:mx-auto md:px-6">
         <Logo />
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#features" className="hover:text-foreground transition">Fonctionnalités</a>
+          
           <a href="#how" className="hover:text-foreground transition">Comment ça marche</a>
           <a href="#pricing" className="hover:text-foreground transition">Premium</a>
           <a href="#testimonials" className="hover:text-foreground transition">Témoignages</a>
