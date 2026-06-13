@@ -674,7 +674,7 @@ export default function Landing() {
       <Nav />
       <main>
         <Hero />
-        <Features />
+        
         <Brand />
         <HowItWorks />
         <PopularProfiles />
