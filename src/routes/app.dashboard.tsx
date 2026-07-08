@@ -291,11 +291,12 @@ function Dashboard() {
             ))}
           </div>
           <button
-            onClick={() => toast.info("Bientôt disponible 💎")}
+            onClick={() => navigate({ to: "/app/premium" })}
             className="relative mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold to-amber-500 px-5 py-2.5 text-sm font-bold text-gold-foreground transition hover:scale-[1.02]"
           >
             <Zap className="h-4 w-4" /> Passer Premium
           </button>
+
         </div>
       </section>
 
