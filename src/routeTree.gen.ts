@@ -16,6 +16,7 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppPremiumRouteImport } from './routes/app.premium'
 import { Route as AppMessagesRouteImport } from './routes/app.messages'
 import { Route as AppMatchesRouteImport } from './routes/app.matches'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
@@ -58,6 +59,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
 const AppProfileRoute = AppProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPremiumRoute = AppPremiumRouteImport.update({
+  id: '/premium',
+  path: '/premium',
   getParentRoute: () => AppRoute,
 } as any)
 const AppMessagesRoute = AppMessagesRouteImport.update({
@@ -113,6 +119,7 @@ export interface FileRoutesByFullPath {
   '/app/dashboard': typeof AppDashboardRoute
   '/app/matches': typeof AppMatchesRoute
   '/app/messages': typeof AppMessagesRouteWithChildren
+  '/app/premium': typeof AppPremiumRoute
   '/app/profile': typeof AppProfileRoute
   '/app/': typeof AppIndexRoute
   '/app/messages/$matchId': typeof AppMessagesMatchIdRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByTo {
   '/admin/users': typeof AdminUsersRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/matches': typeof AppMatchesRoute
+  '/app/premium': typeof AppPremiumRoute
   '/app/profile': typeof AppProfileRoute
   '/app': typeof AppIndexRoute
   '/app/messages/$matchId': typeof AppMessagesMatchIdRoute
@@ -146,6 +154,7 @@ export interface FileRoutesById {
   '/app/dashboard': typeof AppDashboardRoute
   '/app/matches': typeof AppMatchesRoute
   '/app/messages': typeof AppMessagesRouteWithChildren
+  '/app/premium': typeof AppPremiumRoute
   '/app/profile': typeof AppProfileRoute
   '/app/': typeof AppIndexRoute
   '/app/messages/$matchId': typeof AppMessagesMatchIdRoute
@@ -165,6 +174,7 @@ export interface FileRouteTypes {
     | '/app/dashboard'
     | '/app/matches'
     | '/app/messages'
+    | '/app/premium'
     | '/app/profile'
     | '/app/'
     | '/app/messages/$matchId'
@@ -180,6 +190,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/app/dashboard'
     | '/app/matches'
+    | '/app/premium'
     | '/app/profile'
     | '/app'
     | '/app/messages/$matchId'
@@ -197,6 +208,7 @@ export interface FileRouteTypes {
     | '/app/dashboard'
     | '/app/matches'
     | '/app/messages'
+    | '/app/premium'
     | '/app/profile'
     | '/app/'
     | '/app/messages/$matchId'
@@ -263,6 +275,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/app/profile'
       preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/premium': {
+      id: '/app/premium'
+      path: '/premium'
+      fullPath: '/app/premium'
+      preLoaderRoute: typeof AppPremiumRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/messages': {
@@ -342,6 +361,7 @@ interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppMatchesRoute: typeof AppMatchesRoute
   AppMessagesRoute: typeof AppMessagesRouteWithChildren
+  AppPremiumRoute: typeof AppPremiumRoute
   AppProfileRoute: typeof AppProfileRoute
   AppIndexRoute: typeof AppIndexRoute
 }
@@ -350,6 +370,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppMatchesRoute: AppMatchesRoute,
   AppMessagesRoute: AppMessagesRouteWithChildren,
+  AppPremiumRoute: AppPremiumRoute,
   AppProfileRoute: AppProfileRoute,
   AppIndexRoute: AppIndexRoute,
 }
@@ -369,3 +390,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
